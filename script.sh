@@ -25,10 +25,11 @@ while read -r email; do
   echo -e "\033[1;34mProcessing user: $email...\033[0m"
   echo "$(timestamp) | Processing user: $email" >> "$LOG_FILE"
 
-  # Execute the dsearch command to get the user details
+  # Adjust search to check for both prefixed and unprefixed mail attributes
   result=$(dsearch -b "dc=web, dc=optus, dc=com, dc=au" \
     -D "cn=srauser, ou=system accounts, dc=web, dc=optus, dc=com, dc=au" \
-    -w "Prd@001" -h localhost -p 1389 -LLL -s sub "(mail=$email)" \
+    -w "Prd@001" -h localhost -p 1389 -LLL -s sub \
+    "(&(mail=*$email*))" \
     dn mail smLogin accountDisabled idmRole idmAdmin 2>>"$LOG_FILE")
 
   # Check if the user exists in the directory
@@ -58,10 +59,17 @@ while read -r email; do
     else
       attribute=$(echo "$line" | cut -d':' -f1)
       value=$(echo "$line" | cut -d':' -f2- | sed 's/^ //')
-      updated_value="to_be_deleted$value"
-      updated_line="$attribute: $updated_value"
-      echo "$updated_line" >> "$TEMP_FILE"
-      echo "$(timestamp) | Original: $line | Updated: $updated_line" >> "$LOG_FILE"
+
+      # Skip if the value already has "to_be_deleted"
+      if [[ "$value" =~ ^to_be_deleted ]]; then
+        echo "$(timestamp) | Skipped: $line already has 'to_be_deleted'." >> "$LOG_FILE"
+        echo "$line" >> "$TEMP_FILE"
+      else
+        updated_value="to_be_deleted$value"
+        updated_line="$attribute: $updated_value"
+        echo "$updated_line" >> "$TEMP_FILE"
+        echo "$(timestamp) | Original: $line | Updated: $updated_line" >> "$LOG_FILE"
+      fi
     fi
   done
 
