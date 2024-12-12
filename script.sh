@@ -23,7 +23,7 @@ while read -r email; do
   fi
 
   echo -e "\033[1;34mProcessing user: $email...\033[0m"
-  echo "$(timestamp) - Processing: $email" >> "$LOG_FILE"
+  echo "$(timestamp) | Processing user: $email" >> "$LOG_FILE"
 
   # Execute the dsearch command to get the user details
   result=$(dsearch -b "dc=web, dc=optus, dc=com, dc=au" \
@@ -33,40 +33,51 @@ while read -r email; do
 
   # Check if the user exists in the directory
   if [[ -z "$result" ]]; then
-    echo "$(timestamp) - Error: User $email not found in directory." >> "$LOG_FILE"
+    echo "$(timestamp) | Error: User $email not found in directory." >> "$LOG_FILE"
     echo "$email - failed - $(timestamp)" >> "$OUTPUT_FILE"
     echo -e "\033[1;31mFailed: User $email not found.\033[0m"
     continue
   fi
 
-  echo "$(timestamp) - User $email details fetched successfully." >> "$LOG_FILE"
+  echo "$(timestamp) | Fetched details for $email:" >> "$LOG_FILE"
+  echo "$result" >> "$LOG_FILE"
+  echo "----------------------------------------" >> "$LOG_FILE"
 
   # Create LDIF file for dxmodify command
   echo "$result" | while read -r line; do
     if [[ "$line" =~ ^dn: ]]; then
       echo "$line" > "$TEMP_FILE"
+      echo "$(timestamp) | Original: $line | Updated: $line" >> "$LOG_FILE"
     elif [[ "$line" =~ ^accountDisabled: ]]; then
-      echo "accountDisabled: 2" >> "$TEMP_FILE"
+      updated_line="accountDisabled: 2"
+      echo "$updated_line" >> "$TEMP_FILE"
+      echo "$(timestamp) | Original: $line | Updated: $updated_line" >> "$LOG_FILE"
     elif [[ "$line" =~ ^dc ]]; then
       echo "$line" >> "$TEMP_FILE"
+      echo "$(timestamp) | Original: $line | Updated: $line" >> "$LOG_FILE"
     else
       attribute=$(echo "$line" | cut -d':' -f1)
       value=$(echo "$line" | cut -d':' -f2- | sed 's/^ //')
-      echo "$attribute: to_be_deleted$value" >> "$TEMP_FILE"
+      updated_value="to_be_deleted$value"
+      updated_line="$attribute: $updated_value"
+      echo "$updated_line" >> "$TEMP_FILE"
+      echo "$(timestamp) | Original: $line | Updated: $updated_line" >> "$LOG_FILE"
     fi
   done
 
   # Execute the dxmodify command
   dxmodify -f "$TEMP_FILE" 2>>"$LOG_FILE"
   if [[ $? -eq 0 ]]; then
-    echo "$(timestamp) - Successfully updated user $email." >> "$LOG_FILE"
+    echo "$(timestamp) | Successfully updated user $email." >> "$LOG_FILE"
     echo "$email - successful - $(timestamp)" >> "$OUTPUT_FILE"
     echo -e "\033[1;32mSuccess: User $email updated.\033[0m"
   else
-    echo "$(timestamp) - Error: Failed to update user $email." >> "$LOG_FILE"
+    echo "$(timestamp) | Error: Failed to update user $email." >> "$LOG_FILE"
     echo "$email - failed - $(timestamp)" >> "$OUTPUT_FILE"
     echo -e "\033[1;31mFailed: Could not update $email.\033[0m"
   fi
+
+  echo "----------------------------------------" >> "$LOG_FILE"
 
   # Clean up temporary files
   rm -f "$TEMP_FILE"
