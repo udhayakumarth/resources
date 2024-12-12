@@ -25,7 +25,7 @@ while read -r email; do
   echo -e "\033[1;34mProcessing user: $email...\033[0m"
   echo "$(timestamp) | Processing user: $email" >> "$LOG_FILE"
 
-  # Adjust search to check for both prefixed and unprefixed mail attributes
+  # Execute the dsearch command to get the user details
   result=$(dsearch -b "dc=web, dc=optus, dc=com, dc=au" \
     -D "cn=srauser, ou=system accounts, dc=web, dc=optus, dc=com, dc=au" \
     -w "Prd@001" -h localhost -p 1389 -LLL -s sub \
@@ -37,6 +37,15 @@ while read -r email; do
     echo "$(timestamp) | Error: User $email not found in directory." >> "$LOG_FILE"
     echo "$email - failed - $(timestamp)" >> "$OUTPUT_FILE"
     echo -e "\033[1;31mFailed: User $email not found.\033[0m"
+    continue
+  fi
+
+  # Count the number of dn entries in the result
+  dn_count=$(echo "$result" | grep -c "^dn:")
+  if [[ "$dn_count" -ne 1 ]]; then
+    echo "$(timestamp) | Error: Multiple dn entries ($dn_count) found for $email. Skipping update." >> "$LOG_FILE"
+    echo "$email - failed (multiple dn) - $(timestamp)" >> "$OUTPUT_FILE"
+    echo -e "\033[1;33mSkipped: Multiple dn entries found for $email.\033[0m"
     continue
   fi
 
