@@ -74,3 +74,24 @@ Shell Script
 ---------------
 QR to Resume Link
 Resume Page
+
+
+
+
+
+
+
+- HTTP Methods - GET, POST, PUT, DELETE, PATCH, HEAD, OPTIONS
+- HTTP Headers - Caching Headers (Cache-Control, Expires, ETag, Request Headers (User-Agent, Accept, Content-Type, etc.), Response Headers (Location, Set-Cookie, Content-Length, etc.)
+- Cookies & Sessions - Setting and reading cookies
+- HTTPS and SSL/TLS
+- URL Encoding - URL encoding/decoding (UTF-8, percent-encoding)
+- Query Parameters - Structure of a URL (Scheme, Host, Path, Query, Fragment)
+- Cross-Origin Resource Sharing
+- Content-Type and MIME Types
+- WebSockets 
+- Optimization - HTTP Keep-Alive, GZIP compression, Browser caching strategies
+- Proxy Servers
+- Load Balancers
+- HTTP/3 and QUIC - QUIC protocol for faster web connections
+- Authentication and Authorization - Basic Authentication, Bearer Tokens, OAuth, HTTP Authentication headers (Authorization, WWW-Authenticate)
