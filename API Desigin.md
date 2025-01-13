@@ -41,3 +41,32 @@ any resource they are updating, even properties that didn’t exist at the time 
 puts a burden on clients and makes the server itself vulnerable to client errors. PATCH, on the other hand, 
 only changes the data explicitly referenced by the client. The server takes responsibility for the merge, 
 which is safer9. Of course, you should never implement a PUT operation that has PATCH semantics
+
+
+****
+### Include Links
+A change in recent years has been the realization that the use of links brings a significant 
+improvement to the usability and learnability of all APIs, not just those that are designed to be consumed 
+by completely general-purpose clients
+Reprising the example introduced in the Foreword, assume that there is a relationship between a dog and 
+its owner. A popular way to represent relationship information in JSON looks like the following:
+
+```
+{“id”: “12345678”, 
+“name”: “Lassie”, 
+“furColor”: “brown”, 
+“ownerID”: “98765432”
+}
+```
+The ownerID field expresses the relationship. A better way to express relationships is to use links. If your 
+web APIs do not include links today, a first step is simply to add some links without making other changes, 
+like this:
+```
+{“id”: “12345678”, 
+“kind”: “Dog” 
+“name”: “Lassie”, 
+“furColor”: “brown”, 
+“ownerID”: “98765432”, 
+ownerLink”: “https://dogtracker.com/persons/98765432” 
+}
+```
