@@ -33,3 +33,11 @@ supported for the resource.
 HTTP/1.1 405 Method Not Allowed 
 Allow: GET, DELETE, PATCH
 ```
+***
+### PATCH rather than PUT for updating
+Another thing you can do is to use PATCH rather than PUT for updating. The semantics of PUT are that it 
+completely replaces the state of the resource. This means that clients have to include all the properties of 
+any resource they are updating, even properties that didn’t exist at the time the client was written. This 
+puts a burden on clients and makes the server itself vulnerable to client errors. PATCH, on the other hand, 
+only changes the data explicitly referenced by the client. The server takes responsibility for the merge, 
+which is safer9. Of course, you should never implement a PUT operation that has PATCH semantics
