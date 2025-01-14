@@ -52,23 +52,27 @@ Reprising the example introduced in the Foreword, assume that there is a relatio
 its owner. A popular way to represent relationship information in JSON looks like the following:
 
 ```
-{“id”: “12345678”, 
-“name”: “Lassie”, 
-“furColor”: “brown”, 
-“ownerID”: “98765432”
+{
+  "id": "12345678",
+  "name": "Lassie",
+  "furColor": "brown",
+  "ownerID": "98765432"
 }
+
 ```
 The ownerID field expresses the relationship. A better way to express relationships is to use links. If your 
 web APIs do not include links today, a first step is simply to add some links without making other changes, 
 like this:
 ```
-{“id”: “12345678”, 
-“kind”: “Dog” 
-“name”: “Lassie”, 
-“furColor”: “brown”, 
-“ownerID”: “98765432”, 
-ownerLink”: “https://dogtracker.com/persons/98765432” 
+{
+  "id": "12345678",
+  "kind": "Dog",
+  "name": "Lassie",
+  "furColor": "brown",
+  "ownerID": "98765432",
+  "ownerLink": "https://dogtracker.com/persons/98765432"
 }
+
 ```
 
 ### Include self-reference and kind properties
@@ -82,21 +86,25 @@ process.
 
 ### How should I represent collections?
 ```
-{“self”: “https://dogtracker.com/dogs”, 
-“kind”: “Collection”, 
-“contents”: [
-{“self”: “https://dogtracker.com/dogs/12344”, 
-“kind”: “Dog”, 
-“name”: “Fido”, 
-“furColor”: “white” 
-}, 
-{“self”: “https://dogtracker.com/dogs/12345”, 
-“kind”: “Dog”, 
-“name”: “Rover”, 
-“furColor”: “brown” 
+{
+  "self": "https://dogtracker.com/dogs",
+  "kind": "Collection",
+  "contents": [
+    {
+      "self": "https://dogtracker.com/dogs/12344",
+      "kind": "Dog",
+      "name": "Fido",
+      "furColor": "white"
+    },
+    {
+      "self": "https://dogtracker.com/dogs/12345",
+      "kind": "Dog",
+      "name": "Rover",
+      "furColor": "brown"
+    }
+  ]
 }
-]
-}
+
 
 ```
 
@@ -131,24 +139,28 @@ HTTP/1.1 200 OK
 Content-Type: application/json 
 Content-Location: https://dogtracker.com/dogs?limit=25,offset=0 
 Content-Length: 23456
-{“self”: “https://dogtracker.com/dogs?limit=25,offset=0”, 
-“kind”: “Page”, 
-“pageOf”: “https://dogtracker.com/dogs”, 
-“next”: “https://dogtracker.com/dogs?limit=25,offset=25”, 
-“contents”: [
-{“self”: “https://dogtracker.com/dogs/12344”, 
-“kind”: “Dog”, 
-“name”: “Fido”, 
-“furColor”: “white” 
-}, 
-{“self”: “https://dogtracker.com/dogs/12345”, 
-“kind”: “Dog”, 
-“name”: “Rover”, 
-“furColor”: “brown” 
-}, 
-… (23 more)
- ]
+{
+  "self": "https://dogtracker.com/dogs?limit=25&offset=0",
+  "kind": "Page",
+  "pageOf": "https://dogtracker.com/dogs",
+  "next": "https://dogtracker.com/dogs?limit=25&offset=25",
+  "contents": [
+    {
+      "self": "https://dogtracker.com/dogs/12344",
+      "kind": "Dog",
+      "name": "Fido",
+      "furColor": "white"
+    },
+    {
+      "self": "https://dogtracker.com/dogs/12345",
+      "kind": "Dog",
+      "name": "Rover",
+      "furColor": "brown"
+    }
+    // Add the other 23 dog objects here
+  ]
 }
+
 ```
 
 The client followed the redirect, which returned the first page. The first page contains a subset of the collection 
