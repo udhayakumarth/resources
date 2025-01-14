@@ -8,7 +8,7 @@ with a Location header that provides the URL of the newly-created resource.
 HTTP/1.1 201 Created 
 Location: https://dogtracker.com/dogs/1234567
 ```
-****
+
 ### Status 200
 the response to a successful 
 GET is not just a 200 status code and some data, it includes a standard package of headers, like this:
@@ -24,7 +24,7 @@ ETag: 1437080173827
 Content-Length: nnnn 
 // body goes here /
 ```
-****
+
 ### Status 405
 the 405 error code indicating that the client tried to use a method that the server 
 does not support for the given resource must be paired with an Allow header saying which methods are 
@@ -33,7 +33,7 @@ supported for the resource.
 HTTP/1.1 405 Method Not Allowed 
 Allow: GET, DELETE, PATCH
 ```
-***
+
 ### PATCH rather than PUT for updating
 Another thing you can do is to use PATCH rather than PUT for updating. The semantics of PUT are that it 
 completely replaces the state of the resource. This means that clients have to include all the properties of 
@@ -43,7 +43,7 @@ only changes the data explicitly referenced by the client. The server takes resp
 which is safer9. Of course, you should never implement a PUT operation that has PATCH semantics
 
 
-****
+----------
 ### Include Links
 A change in recent years has been the realization that the use of links brings a significant 
 improvement to the usability and learnability of all APIs, not just those that are designed to be consumed 
@@ -164,6 +164,27 @@ Content-Length: 23456
 ```
 
 The client followed the redirect, which returned the first page. The first page contains a subset of the collection 
-contents, references the original collection in the pageOf property, and also references the subsequent 
-page in the next property (unless there is no next page). There is also a previous property that is missing 
+contents, references the original collection in the `pageOf` property, and also references the subsequent 
+page in the `next` property (unless there is no next page). There is also a `previous` property that is missing 
 in this case because there is no page before the first one.
+
+### What about property names?
+You have an object with data attributes on it. How should you name the attributes?
+Here are API responses from a few leading APIs:
+Twitter:
+```
+"created_at": "Thu Nov 03 05:19;38 +0000 2011"
+```
+Bing:
+```
+"DateTime": "2011-10-29T09:35:00Z"
+```
+Foursquare:
+```
+"createdAt": 1475795458
+```
+Arguments over whether snake_case (Twitter) or camelCase (Foursquare) is better have raged for 
+decades (there has even been some scientific research to see which works better). The science is 
+inconclusive, and opinions vary, so pick the one that pleases your customers better. JavaScript, Java, 
+and Objective-C programmers tend to favor camelCase, while Python and Ruby programmers tend to 
+favor snake_case, with PHP being split by sub-communities.
