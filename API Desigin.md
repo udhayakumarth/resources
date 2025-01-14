@@ -188,3 +188,15 @@ decades (there has even been some scientific research to see which works better)
 inconclusive, and opinions vary, so pick the one that pleases your customers better. JavaScript, Java, 
 and Objective-C programmers tend to favor camelCase, while Python and Ruby programmers tend to 
 favor snake_case, with PHP being split by sub-communities.
+For most web APIs that means camelCase, so we recommend that you use camelCase unless your intended customer set is atypical.
+
+You should avoid putting characters in property names that are not compatible with identifiers in popular 
+programming languages. A common pitfall is using a hyphen (-), which is common in web standards but is 
+interpreted as the subtraction operator in JavaScript and most other programming languages. There are 
+other characters that are valid in HTTP headers and URLs that should be avoided in property names, like 
+these: /\=:;,.?#<>@.
+
+It is also better to avoid using property names that conflict with reserved words and globals in popular 
+programming languages or environments. For example, self, this, window, document, type, typeof, 
+var, const, println, print, console, parseInt, parseFloat, escape, unescape, function, def, 
+class, and so on. Unfortunately, there are lots of these, and it is hard to make a comprehensive list.
