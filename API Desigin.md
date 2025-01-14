@@ -70,3 +70,88 @@ like this:
 ownerLink”: “https://dogtracker.com/persons/98765432” 
 }
 ```
+
+### Include self-reference and kind properties
+Including a `self` property makes it explicit what web resource’s properties we are talking about 
+without requiring contextual knowledge—like what URL did you perform a GET on to retrieve this 
+representation—or application-specific knowledge.
+
+Including a `kind` property helps clients recognize whether or not this is an object they know how to 
+process.
+
+
+### How should I represent collections?
+```
+{“self”: “https://dogtracker.com/dogs”, 
+“kind”: “Collection”, 
+“contents”: [
+{“self”: “https://dogtracker.com/dogs/12344”, 
+“kind”: “Dog”, 
+“name”: “Fido”, 
+“furColor”: “white” 
+}, 
+{“self”: “https://dogtracker.com/dogs/12345”, 
+“kind”: “Dog”, 
+“name”: “Rover”, 
+“furColor”: “brown” 
+}
+]
+}
+
+```
+
+### Paginated collections
+ It is not a good idea for either the client or the server to try to return very large 
+collections, so what we would expect to happen is that the collection would be paginated. Here is an 
+HTTP message exchange that illustrates.
+
+Request:
+```
+GET /dogs HTTP/1.1 
+Host: dogtracker.com 
+Accept: application/json
+```
+
+Response:
+```
+HTTP/1.1 303 See Other 
+Location: https://dogtracker.com/dogs?limit=25,offset=0
+```
+
+Request:
+```
+GET /dogs?limit=25,offset=0 HTTP/1.1 
+Host: dogtracker.com 
+Accept: application/json
+```
+
+Response:
+```
+HTTP/1.1 200 OK 
+Content-Type: application/json 
+Content-Location: https://dogtracker.com/dogs?limit=25,offset=0 
+Content-Length: 23456
+{“self”: “https://dogtracker.com/dogs?limit=25,offset=0”, 
+“kind”: “Page”, 
+“pageOf”: “https://dogtracker.com/dogs”, 
+“next”: “https://dogtracker.com/dogs?limit=25,offset=25”, 
+“contents”: [
+{“self”: “https://dogtracker.com/dogs/12344”, 
+“kind”: “Dog”, 
+“name”: “Fido”, 
+“furColor”: “white” 
+}, 
+{“self”: “https://dogtracker.com/dogs/12345”, 
+“kind”: “Dog”, 
+“name”: “Rover”, 
+“furColor”: “brown” 
+}, 
+… (23 more)
+ ]
+}
+```
+
+The client followed the redirect, which returned the first page. The first page contains a subset of the collection 
+contents, references the original collection in the pageOf property, and also references the subsequent 
+page in the next property (unless there is no next page). There is also a previous property that is missing 
+in this case because there is no page before the first one.
