@@ -23,14 +23,27 @@
 - Node JS
 
 
-### DSA Phase 1 
-- Arrays and strings
-- Hashing
-- Linked lists
-- Stacks and queues
-- Trees and graphs
-- Heaps
-- Greedy
-- Binary search
-- Backtracking
-- Dynamic programming
+### DSA Phase 1
+Abstract, Interface and Exception
+Inheritance and Polymorphism
+Arrays, Collections and Generics
+Linked lists
+Selection Sort
+Recursion
+Quicksort
+Hash Tables
+Lambda and Date
+Files Input and Output
+
+### DSA Phase 2
+Stacks and queues
+Trees and graphs
+Heaps
+Binary search
+Backtracking
+Breadth-first Search
+Dijkstr's algorithm
+Greedy algorithm
+Dynamic programming
+K-nearest neighbors
+Multi Threading
