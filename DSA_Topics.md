@@ -1,31 +1,31 @@
 ### DSA Phase 1
-- Abstract, Interface and Exception
-- Inheritance and Polymorphism
-- Arrays, Collections and Generics
-- Date and Time
-- StringBuilder & StringBuffer
-- Linked lists
-- Selection Sort
-- Recursion
-- Quicksort
-- Hash Tables
-- Lambda and Date
-- Files Input and Output
-- Stream API
-- Optional in Java
+- [ ] Abstract, Interface and Exception
+- [ ] Inheritance and Polymorphism
+- [ ] Arrays, Collections and Generics
+- [ ] Date and Time
+- [ ] StringBuilder & StringBuffer
+- [ ] Linked lists
+- [ ] Selection Sort
+- [ ] Recursion
+- [ ] Quicksort
+- [ ] Hash Tables
+- [ ] Lambda and Date
+- [ ] Files Input and Output
+- [ ] Stream API
+- [ ] Optional in Java
 
 ### DSA Phase 2
-- Multi Threading
-- Java Reflection API
-- Stacks and queues
-- Trees and graphs
-- Heaps
-- Binary search
-- Backtracking
-- Breadth-first Search
-- Dijkstr's algorithm
-- Greedy algorithm
-- Dynamic programming
-- K-nearest neighbors
-- Functional Programming in Java
-- Reactive Programming in Java
+- [ ] Multi Threading
+- [ ] Java Reflection API
+- [ ] Stacks and queues
+- [ ] Trees and graphs
+- [ ] Heaps
+- [ ] Binary search
+- [ ] Backtracking
+- [ ] Breadth-first Search
+- [ ] Dijkstr's algorithm
+- [ ] Greedy algorithm
+- [ ] Dynamic programming
+- [ ] K-nearest neighbors
+- [ ] Functional Programming in Java
+- [ ] Reactive Programming in Java
