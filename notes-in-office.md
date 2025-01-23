@@ -102,6 +102,11 @@ Spring Security
 Spring Boot
 Spring Event Handling
 
+Vaul 1: Session Hijacking
+Vaul 2: Even after logout the session is still useable(means api accepts the session and gives responce).
+Vaul 3: with a normal user session you can add or remove roles for any user(like super admin).
+Vaul 4: using insecure direct object reference like applicationUserID.
+
 
 API's
 -------
