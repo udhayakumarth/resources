@@ -1,5 +1,3 @@
-# Java Interview Questions with Answers
-
 ### 1. What is the difference between JDK, JRE, and JVM?
 - **JDK (Java Development Kit)**: It is a full-featured software development kit for Java, including JRE and development tools like compilers, debuggers, etc.
 - **JRE (Java Runtime Environment)**: It provides the libraries and other resources necessary to run Java programs. It includes JVM but not development tools.
