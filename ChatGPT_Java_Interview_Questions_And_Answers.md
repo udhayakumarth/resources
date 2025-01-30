@@ -286,3 +286,266 @@ The **`java.util.function`** package contains functional interfaces that are use
 `CopyOnWriteArrayList` is a thread-safe variant of `ArrayList`. It ensures that no modification will affect the iteration, by creating a new copy of the array when changes are made.
 
 
+
+### 51. What is the `default` keyword used for in interfaces (Java 8)?
+The `default` keyword allows interfaces to have concrete methods with default implementations. This was introduced in Java 8 to provide backward compatibility when adding methods to interfaces.
+
+
+
+### 52. What is `@FunctionalInterface` in Java?
+The `@FunctionalInterface` annotation is used to define interfaces with exactly one abstract method. These interfaces can be implemented using lambda expressions.
+
+
+
+### 53. What is the purpose of the `this()` constructor call in Java?
+The `this()` constructor call is used to call another constructor from the same class. It is often used to provide multiple constructors with different parameters.
+
+
+
+### 54. What is the `super()` constructor call in Java?
+The `super()` constructor call is used to call the constructor of the superclass. It must be the first statement in the subclass constructor.
+
+
+
+### 55. What is the difference between `wait()` and `sleep()` in Java?
+- **`wait()`**: It is used to pause the execution of the current thread and release the lock, allowing other threads to acquire the lock.
+- **`sleep()`**: It pauses the current thread for a specified time but does not release the lock.
+
+
+
+### 56. What is the role of `volatile` keyword in Java?
+The `volatile` keyword ensures that a variable is directly read from and written to main memory, preventing the thread from caching it locally. It helps maintain thread safety in a multi-threaded environment.
+
+
+
+### 57. What is the difference between `StringBuilder` and `StringBuffer` in Java?
+- **StringBuilder**: Not synchronized, and thus, faster for single-threaded use cases.
+- **StringBuffer**: Synchronized, making it thread-safe, but slower due to synchronization overhead.
+
+
+
+### 58. What are the two types of memory areas in JVM?
+- **Heap Memory**: Used for dynamic memory allocation of objects.
+- **Stack Memory**: Used for method calls, local variables, and control flow during method execution.
+
+
+
+### 59. What is the difference between `ArrayList` and `LinkedList` when it comes to memory usage?
+- **ArrayList**: Uses a dynamic array for storage, which can lead to wasted space if the array is not full. The memory usage is contiguous.
+- **LinkedList**: Uses a doubly linked list, which requires extra memory for pointers (next/previous) to other elements.
+
+
+
+### 60. What is a `HashMap` in Java?
+A **HashMap** is a collection class that stores key-value pairs, where each key is unique. It provides constant-time performance (O(1)) for basic operations like `get()` and `put()`, and does not guarantee any order of the elements.
+
+
+
+### 61. What is the `clone()` method in Java?
+The `clone()` method is used to create and return a copy of the current object. It performs a shallow copy by default, meaning it copies primitive fields but references the same objects for non-primitive fields.
+
+
+
+### 62. What is the difference between shallow copy and deep copy?
+- **Shallow copy**: Creates a new object but does not copy the objects referenced by the original object. The references are copied as they are.
+- **Deep copy**: Creates a new object and recursively copies all objects referenced by the original object, ensuring independent objects.
+
+
+
+### 63. What is the `Comparable` interface in Java?
+The **Comparable** interface is used to define the natural order of objects in Java. It contains a method `compareTo()`, which compares the current object with another object of the same type.
+
+
+
+### 64. What is `Comparator` in Java?
+A **Comparator** is used to define a custom order for objects. Unlike `Comparable`, it can compare objects of different types, and it allows for multiple ways of sorting (using `compare()` method).
+
+
+
+### 65. What is a `weak reference` in Java?
+A **weak reference** in Java is a reference type that does not prevent its referent from being garbage collected. If an object is only weakly reachable, it can be collected by the garbage collector.
+
+
+
+### 66. What is the purpose of the `interface` keyword in Java?
+An **interface** is a reference type in Java, similar to a class, that can contain only constants, method signatures, default methods, static methods, and nested types. It is used to define the contract that a class must adhere to.
+
+
+
+### 67. Can you explain `java.util.Date` class and its usage?
+The **`java.util.Date`** class represents a specific point in time (i.e., date and time). It has been largely replaced by the **java.time** package (introduced in Java 8) for better date-time handling.
+
+
+
+### 68. What are `enum` types in Java?
+An **enum** in Java is a special class that represents a group of constants (unchangeable variables). Enum types are used to define variables with a limited set of possible values.
+
+
+
+### 69. What is the `instanceof` operator in Java?
+The `instanceof` operator is used to test whether an object is an instance of a particular class or interface. It returns `true` if the object is an instance of the specified type.
+
+
+
+### 70. What is `throw` in Java?
+The `throw` keyword is used to explicitly throw an exception from within a method or block of code.
+
+
+
+### 71. What is `throws` in Java?
+The `throws` keyword is used in a method signature to declare that the method might throw certain exceptions during its execution. It indicates that the caller of the method should handle or propagate the exception.
+
+
+
+### 72. What is the purpose of the `finalize()` method in Java?
+The `finalize()` method is called by the garbage collector before an object is destroyed. It can be overridden to release resources (e.g., closing a file or network connection).
+
+
+
+### 73. What is a `ListIterator` in Java?
+A **ListIterator** is an interface that allows traversal of a list in both forward and backward directions. It also provides methods to modify the list during iteration.
+
+
+
+### 74. What are the differences between `synchronized` block and `synchronized` method?
+- **Synchronized block**: Synchronizes only a portion of the method, making it more efficient when only part of the method needs synchronization.
+- **Synchronized method**: Synchronizes the entire method, ensuring that only one thread can execute it at a time.
+
+
+
+### 75. What is the purpose of `Thread.join()` in Java?
+The `join()` method allows one thread to wait for the completion of another thread. When `join()` is called, the current thread pauses its execution until the thread it was called on has finished.
+
+
+
+### 76. What is the `ExecutorService` in Java?
+The **ExecutorService** is an interface in Java that provides a higher-level replacement for the traditional thread management. It manages a pool of threads and schedules tasks for execution asynchronously.
+
+
+
+### 77. What are `Callable` and `Runnable` interfaces?
+- **Runnable**: Represents a task that can be executed by a thread. It has a `run()` method.
+- **Callable**: Similar to `Runnable`, but it can return a result and throw exceptions. Its method is `call()`.
+
+
+
+### 78. What is `java.util.concurrent` package in Java?
+The **`java.util.concurrent`** package provides classes and interfaces for concurrent programming, including thread pools, atomic variables, and utilities for synchronizing thread execution.
+
+
+
+### 79. What is the purpose of `ReentrantLock` in Java?
+A **ReentrantLock** is a synchronization primitive that allows threads to lock and unlock resources. It is more flexible than `synchronized` blocks, providing features like timed locks and the ability to interrupt a thread waiting for a lock.
+
+
+
+### 80. What is a `CountDownLatch` in Java?
+A **CountDownLatch** is a synchronization aid that allows one or more threads to wait until a set of operations being performed by other threads completes.
+
+
+
+### 81. What is the difference between `ArrayList` and `Vector` in terms of synchronization?
+- **ArrayList**: Not synchronized, making it faster but not thread-safe.
+- **Vector**: Synchronized, making it thread-safe but slower due to synchronization overhead.
+
+
+
+### 82. What is the difference between `String` and `StringBuilder` in Java?
+- **String**: Immutable, meaning that any operation on a `String` creates a new object.
+- **StringBuilder**: Mutable, meaning that it allows modification of the same object without creating new instances.
+
+
+
+### 83. How do you handle exceptions in Java?
+Exceptions in Java are handled using `try-catch` blocks. You can also use `finally` to ensure that code executes after the try-catch block, regardless of whether an exception occurred.
+
+
+
+### 84. What is a `Stack` in Java?
+A **Stack** is a data structure that follows the Last-In-First-Out (LIFO) principle. It is used to store a collection of objects where the last added object is the first one to be removed.
+
+
+
+### 85. What is a `Queue` in Java?
+A **Queue** is a data structure that follows the First-In-First-Out (FIFO) principle. It is used to store elements where the first element added is the first one to be removed.
+
+
+
+### 86. What is a `BlockingQueue` in Java?
+A **BlockingQueue** is a type of Queue that supports operations like `put()` and `take()` that block the thread when the queue is empty or full.
+
+
+
+### 87. What is the `System.currentTimeMillis()` method used for in Java?
+The **`System.currentTimeMillis()`** method returns the current time in milliseconds since January 1, 1970, 00:00:00 GMT. It is commonly used for measuring elapsed time.
+
+
+
+### 88. What are `final`, `finally`, and `finalize` in Java?
+- **`final`**: Used to define constants, prevent method overriding, and prevent class inheritance.
+- **`finally`**: A block that executes after `try-catch` to clean up resources.
+- **`finalize()`**: A method called by the garbage collector before an object is destroyed.
+
+
+
+### 89. What is the role of `ClassLoader` in Java?
+A **ClassLoader** in Java is responsible for loading class files into memory. It is part of the JVM and helps dynamically load classes at runtime.
+
+
+
+### 90. What are `annotations` in Java?
+Annotations in Java provide metadata about the code. They do not affect the logic of the program but are used for configuration, compile-time checks, or to provide additional information to the compiler or runtime.
+
+
+
+### 91. What is the `@Override` annotation used for in Java?
+The **`@Override`** annotation is used to indicate that a method is overriding a method from a superclass. It helps catch errors at compile-time if the method does not actually override a superclass method.
+
+
+
+### 92. What is the `@SuppressWarnings` annotation in Java?
+The **`@SuppressWarnings`** annotation is used to suppress specific compiler warnings in Java, such as unused variables or unchecked type casts.
+
+
+
+### 93. What is a `BitSet` in Java?
+A **BitSet** is a class that represents a set of bits or boolean values. It is used to efficiently store large numbers of `true`/`false` values with minimal memory usage.
+
+
+
+### 94. What is the purpose of `UUID` in Java?
+A **UUID** (Universally Unique Identifier) is used to generate unique identifiers for objects, typically used for distributed systems, databases, or sessions.
+
+
+
+### 95. What is `Optional` in Java 8?
+**Optional** is a container object used to represent the presence or absence of a value. It helps avoid `NullPointerException` by providing methods to handle values that may be `null`.
+
+
+
+### 96. What is `java.nio.file` package used for in Java?
+The **`java.nio.file`** package provides efficient file and file system operations using the **NIO** (New I/O) API, introduced in Java 7. It offers better performance and flexibility than the older `java.io` package.
+
+
+
+### 97. What is the purpose of `Path` and `Files` classes in Java?
+- **Path**: Represents the file or directory path in the file system.
+- **Files**: Provides utility methods to work with files and directories, such as reading, writing, and checking file attributes.
+
+
+
+### 98. What is a `Callable` interface in Java?
+A **Callable** is similar to a `Runnable` but can return a result and throw an exception. Its method `call()` returns a value, making it more flexible than `Runnable`.
+
+
+
+### 99. What is the use of `ForkJoinPool` in Java?
+The **ForkJoinPool** is a pool of worker threads that can be used to divide and execute tasks in parallel. It is designed for tasks that can be recursively broken down into smaller sub-tasks.
+
+
+
+### 100. What is `java.util.concurrent.locks` package in Java?
+The **`java.util.concurrent.locks`** package provides lock implementations for multithreading that offer more control over synchronization than the `synchronized` keyword, such as **ReentrantLock** and **ReadWriteLock**.
+
+
+
