@@ -95,3 +95,14 @@ Resume Page
 - Load Balancers
 - HTTP/3 and QUIC - QUIC protocol for faster web connections
 - Authentication and Authorization - Basic Authentication, Bearer Tokens, OAuth, HTTP Authentication headers (Authorization, WWW-Authenticate)
+
+
+How DI and IoC Work Together in Spring Boot:
+Spring Context Initialization: When Spring Boot starts, it initializes the ApplicationContext (IoC container), scanning the classpath for annotated beans (e.g., @Service, @Component, etc.).
+
+Bean Creation: The ApplicationContext creates instances of all beans it finds during its scan. For example, it creates instances of Engine, CarService, etc., and manages their lifecycles.
+
+Dependency Injection: When a bean, like CarService, needs a dependency, such as Engine, Spring will inject the Engine instance into the CarService bean. This can happen through constructor injection, setter injection, or field injection.
+
+Bean Usage: After all the beans are created and dependencies injected, Spring makes them available for use. For instance, when the CarService is used in your application, it will automatically have its dependencies (like Engine) injected and be ready to perform its tasks.
+
