@@ -106,3 +106,6 @@ Dependency Injection: When a bean, like CarService, needs a dependency, such as 
 
 Bean Usage: After all the beans are created and dependencies injected, Spring makes them available for use. For instance, when the CarService is used in your application, it will automatically have its dependencies (like Engine) injected and be ready to perform its tasks.
 
+![image](https://github.com/user-attachments/assets/9943af9f-ecc9-4eb9-a169-e7d2c6eadf95)
+
+
