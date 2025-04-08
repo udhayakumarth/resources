@@ -1,0 +1,15 @@
+Nouns
+-----
+- Singler noun
+- plural noun
+	- base plural(sheep->sheep, fish->fish, bison->bison,code->cod)
+	- regular plural
+		- s
+	- irregular plural
+		- ves(f->ves)
+		- en(child->childern, ox->oxen, brother->brothern, sister->sistern)
+	- mutant plural
+		- only seven words(foot->feet,woman->women,man->men,tooth->teeth,goose->geese,mouse->mice,louse->lice)
+	- foregin plurals
+		- latin(a->ae,us->i,um->a,ex->ices)
+		- greek(is->es,on->a)
