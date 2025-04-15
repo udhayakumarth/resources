@@ -109,3 +109,24 @@ Bean Usage: After all the beans are created and dependencies injected, Spring ma
 ![image](https://github.com/user-attachments/assets/9943af9f-ecc9-4eb9-a169-e7d2c6eadf95)
 
 
+For DevOps:
+1. Cloud
+	- AWS
+2. CI/CD
+	- CircleCI
+	- GitLab CI
+	- Jenkins
+3. Containers
+	- Docker
+4. Container Orchestration
+	- Kubernetes
+5. Monitoring
+	- Prometheus
+	- Grafana
+
+For SOC:
+1. SIEM
+2. SOAR
+3. EDR
+4. Firewalls & Next-Generation Firewalls
+5. IAM(for IAM jobs)
