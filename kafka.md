@@ -1,3 +1,4 @@
+- Cluster
 - Brokers 
 - Topics
 - Partitions
@@ -27,3 +28,14 @@ Kafka protocol
 	
 	
 - Write a program that can make a TCP connection to a server and maintain the connection for long time.
+
+Design
+--------
+- Kafka relies heavily on the filesystem for storing and caching messages. 
+- Linear reads and writes are the most predictable of all usage patterns. and are heavily optimized by the operating system. A modern operating system provides read-ahead and write-behind techniques that prefetch data in large block multiples and group smaller logical writes into large physical writes
+
+From source code:
+- Node.java
+- MetadataSnapshot.java
+- Metadata.java
+- NetworkClient.java 
