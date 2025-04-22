@@ -13,14 +13,21 @@ Topics are partitioned, meaning a topic is spread over a number of "buckets" loc
 
 Kafka APIs
 ----------
-Admin API
-Producer API 
-Consumer API 
-Kafka Streams API 
-Kafka Connect API
+- Admin API
+- Producer API 
+- Consumer API 
+- Kafka Streams API 
+- Kafka Connect API
 
 Kafka protocol
 --------
+- Efficiency
+	Groups messages together.
+	Maintaining common format.
+	Using sendfile, data is copied into pagecache exactly once and reused on each consumption.
+- End-to-end Batch Compression
+	Efficient compression requires compressing multiple messages together.
+	Kafka supports GZIP, Snappy, LZ4 and ZStandard compression protocols.
 - Network
 	Kafka uses a binary protocol over TCP.
 - Batching
